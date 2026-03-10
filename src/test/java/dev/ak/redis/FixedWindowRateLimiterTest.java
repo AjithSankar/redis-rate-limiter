@@ -1,6 +1,7 @@
 package dev.ak.redis;
 
 import com.redis.testcontainers.RedisContainer;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,6 +30,11 @@ class FixedWindowRateLimiterTest {
     @AfterEach
     void tearDown() {
         jedis.close();
+    }
+
+    @AfterAll
+    static void stopContainer() {
+        redisContainer.stop();
     }
 
     @Test
